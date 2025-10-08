@@ -43,6 +43,8 @@ function updateTaskList() {
   paragraph.innerHTML = '';
   var labels = [];
   var innie = '<ol type="1">';
+
+  tasks.sort((a, b) => b.rating - a.rating);
   tasks.forEach(task => {
     console.log(task);
     innie += '<li>' + task.generateLabel() + '</li>';
