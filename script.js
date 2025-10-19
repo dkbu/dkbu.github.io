@@ -113,8 +113,10 @@ function onClickChoose(event) {
 const rateButton = document.getElementsByName('rateGrid')[0];
 rateButton.addEventListener('click', gridRating);
 
+var cellListeners = {};
+
 function displayComparison(taskA, taskB) {
-  const comparisonParagraph = document.getElementById('taskComparison');
+  /*const comparisonParagraph = document.getElementById('taskComparison');
   
   comparisonParagraph.innerHTML = '';
   var innie = '<label id="comp' + taskA.taskId + '">' + taskA.name + '</label> vs <label id="comp' + taskB.taskId + '">' + taskB.name + '</label>';
@@ -123,11 +125,63 @@ function displayComparison(taskA, taskB) {
   const labelA = document.getElementById('comp' + taskA.taskId);
   const labelB = document.getElementById('comp' + taskB.taskId);
   labelA.addEventListener('click', onClickChoose);
-  labelB.addEventListener('click', onClickChoose);
+  labelB.addEventListener('click', onClickChoose);*/
+
+  const taskACell = document.getElementById('taskrow' + taskA.taskId);
+  const taskBCell = document.getElementById('taskrow' + taskB.taskId);
+
+  taskACell.style.backgroundColor = 'lightgreen';
+  taskBCell.style.backgroundColor = 'lightgreen';
 
   var compareButton = document.getElementById('row' + taskA.taskId + 'col' + taskB.taskId);
-  compareButton.disabled = true;
-  compareButton.value = 'Picked';
+
+  if (compareButton.value === 'Choose') {
+    compareButton.value = taskA.name + ' vs ' + taskB.name;
+  }
+
+  if (cellListeners[taskACell.id]) {
+    taskACell.removeEventListener('click', cellListeners[taskACell.id]);
+  }
+  if (cellListeners[taskBCell.id]) {
+    taskBCell.removeEventListener('click', cellListeners[taskBCell.id]);
+  }
+
+  const aFunc = function() {
+    chooseTask(taskACell, taskBCell, taskA, taskB, taskA);
+  }
+  const bFunc = function() {
+    chooseTask(taskACell, taskBCell, taskA, taskB, taskB);
+  }
+  taskACell.addEventListener('click', aFunc);
+  cellListeners[taskACell.id] = aFunc;
+  taskBCell.addEventListener('click', bFunc);
+  cellListeners[taskBCell.id] = bFunc;
+}
+
+function chooseTask(taskACell, taskBCell, taskA, taskB, selectedTask) {
+  var compareButton = document.getElementById('row' + taskA.taskId + 'col' + taskB.taskId);
+  const previousValue = compareButton.value;
+  console.log('Previous value: ' + previousValue + ', selected: ' + selectedTask.name);
+  
+  if (previousValue != selectedTask.name) {
+    selectedTask.rating += 1;
+
+    var notSelectedTask = (selectedTask.taskId == taskA.taskId) ? taskB : taskA;
+    console.log('Not selected task: ' + notSelectedTask.name);
+    if (previousValue === notSelectedTask.name) {
+      notSelectedTask.rating -= 1;
+    }
+  }
+  
+  compareButton.value = selectedTask.name;
+  taskACell.style.backgroundColor = '';
+  taskBCell.style.backgroundColor = '';
+  if (cellListeners[taskACell.id]) {
+    taskACell.removeEventListener('click', cellListeners[taskACell.id]);
+  }
+  if (cellListeners[taskBCell.id]) {
+    taskBCell.removeEventListener('click', cellListeners[taskBCell.id]);
+  }
   updateTaskList();
 }
 
@@ -175,8 +229,8 @@ function gridRating(reset = true) {
     for (var i = 1; i < currTask; i++) {
       ratingText += '<td><input type="button" id="row' + task.taskId + 'col' + colTasks[i].taskId + '" value="Choose" /></td>';
     }
-    
-    ratingText += '<td>' + task.name + '</td></tr>';
+
+    ratingText += '<td id="taskrow' + task.taskId + '">' + task.name + '</td></tr>';
   });
   ratingText += '</table>';
   ratingParagraph.innerHTML = ratingText;
