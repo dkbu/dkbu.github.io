@@ -50,7 +50,7 @@ function editTask(event) {
 
       const ratingParagraph = document.getElementById('taskRating');
       if (ratingParagraph) {
-        gridRating();
+        gridRating(false);
       }
       else {
         updateTaskList();
@@ -159,14 +159,16 @@ function displayComp(event) {
   }
 }
 
-function gridRating() {
+function gridRating(reset = true) {
   const ratingParagraph = document.getElementById('taskRating');
   var ratingText = '<table border="1">';
   var currTask = 0;
   var colTasks = {};
 
   tasks.forEach(task => {
-    task.rating = 0;
+    if (reset) {
+      task.rating = 0;
+    }
     currTask++;
     colTasks[currTask] = task;
     ratingText += '<tr id="row' + currTask + '">';
