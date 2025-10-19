@@ -39,6 +39,26 @@ function markComplete(event) {
   }
 }
 
+function editTask(event) {
+  const labelId = event.target.id;
+  const taskId = parseInt(labelId.replace('lbl', ''));
+  const task = tasks.find(t => t.taskId === taskId);
+  if (task) {
+    const newName = prompt('Edit task name:', task.name);
+    if (newName !== null && newName.trim() !== '') {
+      task.name = newName.trim();
+
+      const ratingParagraph = document.getElementById('taskRating');
+      if (ratingParagraph) {
+        gridRating();
+      }
+      else {
+        updateTaskList();
+      }
+    }
+  }
+}
+
 function updateTaskList() {
   paragraph.innerHTML = '';
   var labels = [];
@@ -55,7 +75,7 @@ function updateTaskList() {
 
   labels.forEach(labelId => {
     const lbl = document.getElementById(labelId);
-    lbl.addEventListener('click', markComplete);
+    lbl.addEventListener('click', editTask);
   });
 }
 
@@ -95,6 +115,7 @@ rateButton.addEventListener('click', gridRating);
 
 function displayComparison(taskA, taskB) {
   const comparisonParagraph = document.getElementById('taskComparison');
+  
   comparisonParagraph.innerHTML = '';
   var innie = '<label id="comp' + taskA.taskId + '">' + taskA.name + '</label> vs <label id="comp' + taskB.taskId + '">' + taskB.name + '</label>';
   comparisonParagraph.innerHTML = innie;
