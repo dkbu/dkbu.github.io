@@ -5,14 +5,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="style.css" />
   </head>
-  <body><p>
-    <input type="text" name="taskInput" />
-    <input type="button" name="addTask" value="Add task" />
-    </p>
-    <p id="taskList"></p>
-    <input type="button" name="rateGrid" value="Rate grid" />
-    <p id="taskRating"></p>
-    <p id="taskComparison"></p>
+  <body>
+    <div class="container">
+      <div class="task-input">
+      <input type="text" name="taskInput" />
+      <input type="button" name="addTask" value="Add task" />
+      </div>
+      <div class="task-list" id="taskList"></div>
+      <div class="task-rate"><input type="button" name="rateGrid" value="Rate grid" /></div>
+      <div class="task-rating" id="taskRating"></div>
+    </div>
     <script src="script.js"></script>
   </body>
 </html>

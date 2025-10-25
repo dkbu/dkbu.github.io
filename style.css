@@ -3,9 +3,53 @@ body {
   color: hwb(272 11% 10%);
   padding: 0 24px;
   margin: 0;
-  height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  height: 100%;
+  width: 100%;
+  justify-content: flex-start;
+  align-items: flex-start;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+}
+
+.container {
+  font-family: sans-serif;
+  display: grid;
+  grid-template-columns: 1fr 3fr;
+  grid-template-rows: 2fr 1fr;
+  gap: 20px;
+  height: 90vh;
+  width: 90vw;
+}
+
+.task-input {
+  grid-row: 1;
+  grid-column: 1;
+}
+
+.task-list {
+  grid-row: 1;
+  grid-column: 2;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.task-rate {
+  grid-row: 2;
+  grid-column: 1;
+}
+
+.task-rating {
+  grid-row: 2;
+  grid-column: 2;
+  font-size: 48px;
+  font-weight: bold;
+  display: flex;
+}
+
+
+div {
+  font-size: 24px;
+  line-height: 1.5;
+  max-width: 600px;
+  border: 2px solid hwb(272 11% 10%);
 }
