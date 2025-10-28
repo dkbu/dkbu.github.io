@@ -116,22 +116,11 @@ rateButton.addEventListener('click', gridRating);
 var cellListeners = {};
 
 function displayComparison(taskA, taskB) {
-  /*const comparisonParagraph = document.getElementById('taskComparison');
-  
-  comparisonParagraph.innerHTML = '';
-  var innie = '<label id="comp' + taskA.taskId + '">' + taskA.name + '</label> vs <label id="comp' + taskB.taskId + '">' + taskB.name + '</label>';
-  comparisonParagraph.innerHTML = innie;
-
-  const labelA = document.getElementById('comp' + taskA.taskId);
-  const labelB = document.getElementById('comp' + taskB.taskId);
-  labelA.addEventListener('click', onClickChoose);
-  labelB.addEventListener('click', onClickChoose);*/
-
   const taskACell = document.getElementById('taskrow' + taskA.taskId);
   const taskBCell = document.getElementById('taskrow' + taskB.taskId);
 
-  taskACell.style.backgroundColor = 'lightgreen';
-  taskBCell.style.backgroundColor = 'lightgreen';
+  taskACell.style.backgroundColor = 'lightblue';
+  taskBCell.style.backgroundColor = 'lightblue';
 
   var compareButton = document.getElementById('row' + taskA.taskId + 'col' + taskB.taskId);
 
@@ -215,7 +204,7 @@ function displayComp(event) {
 
 function gridRating(reset = true) {
   const ratingParagraph = document.getElementById('taskRating');
-  var ratingText = '<table border="1">';
+  var ratingText = '<table class="rating-table">';
   var currTask = 0;
   var colTasks = {};
 
@@ -227,7 +216,7 @@ function gridRating(reset = true) {
     colTasks[currTask] = task;
     ratingText += '<tr id="row' + currTask + '">';
     for (var i = 1; i < currTask; i++) {
-      ratingText += '<td><input type="button" id="row' + task.taskId + 'col' + colTasks[i].taskId + '" value="Choose" /></td>';
+      ratingText += '<td><input type="button" class="table-button" id="row' + task.taskId + 'col' + colTasks[i].taskId + '" value="Choose" /></td>';
     }
 
     ratingText += '<td id="taskrow' + task.taskId + '">' + task.name + '</td></tr>';
