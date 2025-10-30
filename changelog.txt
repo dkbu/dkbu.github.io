@@ -1,1 +1,4 @@
 28.10.2025 - Special thanks to Nico for color coordination and graphic advice. 
+30.10.2025 - Major code refactor. 
+             Added instructions. 
+             Added save/load buttons (not functional yet)
