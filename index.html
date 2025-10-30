@@ -3,7 +3,22 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="style.css" />
+    
+    <!-- CORS and Security Configuration -->
+    <meta http-equiv="Access-Control-Allow-Origin" content="*" />
+    <meta http-equiv="Access-Control-Allow-Methods" content="GET, POST, PUT, DELETE, OPTIONS" />
+    <meta http-equiv="Access-Control-Allow-Headers" content="Content-Type, Authorization, X-Requested-With" />
+    <meta http-equiv="Access-Control-Max-Age" content="86400" />
+    
+    <!-- Content Security Policy -->
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data: https:; connect-src 'self' https:;" />
+    
+    <!-- Additional Security Headers -->
+    <meta http-equiv="X-Content-Type-Options" content="nosniff" />
+    <meta http-equiv="X-Frame-Options" content="DENY" />
+    <meta http-equiv="X-XSS-Protection" content="1; mode=block" />
+    
+    <link rel="stylesheet" href="assets/style.css" />
   </head>
   <body>
     <h1>Task Rating App</h1>
@@ -34,6 +49,6 @@
         <input type="button" name="loadData" value="Load data" />
       </div>
     </div>
-    <script src="script.js"></script>
+    <script type="module" src="src/main.js"></script>
   </body>
 </html>
