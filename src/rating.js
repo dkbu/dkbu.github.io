@@ -120,7 +120,7 @@ export function gridRating(tasks, updateTaskListFn, reset = true) {
     }
     currTask++;
     colTasks[currTask] = task;
-    ratingText += '<tr id="row' + currTask + '">';
+    ratingText += '<tr id="row' + task.taskId + '">';
     for (var i = 1; i < currTask; i++) {
       ratingText += '<td><input type="button" class="table-button" id="row' + task.taskId + 'col' + colTasks[i].taskId + '" value="Choose" /></td>';
     }
@@ -133,13 +133,9 @@ export function gridRating(tasks, updateTaskListFn, reset = true) {
   updateTaskListFn();
 
   const displayCompHandler = displayComp(tasks, updateTaskListFn);
-  
-  for (var r = 1; r <= tasks.length; r++) {
-    for (var c = 1; c < r; c++) {
-      const cell = document.getElementById('row' + r + 'col' + c);
-      if (cell) {
-        cell.addEventListener('click', displayCompHandler);
-      }
-    }
-  }
+
+  const cells = document.getElementsByClassName('table-button');
+  Array.from(cells).forEach(cell => {
+    cell.addEventListener('click', displayCompHandler);
+  });
 }

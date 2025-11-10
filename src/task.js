@@ -1,12 +1,12 @@
 export class Task {
   static nextId = 1;
 
-  constructor(name) {
+  constructor(name, rating = 0) {
     this.name = name;
     this.isComplete = false;
     this.taskId = Task.nextId++;
     console.log('Created task with id ' + this.taskId);
-    this.rating = 0;
+    this.rating = rating;
   }
 
   completeTask() {

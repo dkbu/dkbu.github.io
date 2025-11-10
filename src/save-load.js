@@ -1,3 +1,5 @@
+import { Task } from './task.js'; 
+
 export function saveData(tasks) {
     console.log('Saving data...');
     const data = tasks.map(task => ({
@@ -13,4 +15,21 @@ export function saveData(tasks) {
     a.textContent = 'Download saved tasks';
 }
 
-
+export function handleFileSelect(event, tasks, updateTaskList, gridRating) {
+    const file = event.target.files[0];
+    if (!file) {
+        return;
+    }
+    const reader = new FileReader();
+    reader.onload = function(e) {
+        const contents = e.target.result;
+        const data = JSON.parse(contents);
+        tasks.length = 0; // Clear existing tasks
+        data.forEach(item => {
+            tasks.push(new Task(item.name, item.rating));
+        });
+        updateTaskList();
+        gridRating();
+    };
+    reader.readAsText(file);
+}
