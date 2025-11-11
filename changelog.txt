@@ -4,4 +4,4 @@
              Added save/load buttons (not functional yet)
 10.11.2025 - Save button functional
              Load button functional
-             
+11.11.2025 - CSS tinkering
