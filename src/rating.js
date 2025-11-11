@@ -65,6 +65,7 @@ export function chooseTask(taskACell, taskBCell, taskA, taskB, selectedTask, upd
   }
   
   compareButton.value = selectedTask.name;
+  compareButton.classList.add('picked_table_button');
   taskACell.style.backgroundColor = '';
   taskBCell.style.backgroundColor = '';
   if (cellListeners[taskACell.id]) {
@@ -122,10 +123,10 @@ export function gridRating(tasks, updateTaskListFn, reset = true) {
     colTasks[currTask] = task;
     ratingText += '<tr id="row' + task.taskId + '">';
     for (var i = 1; i < currTask; i++) {
-      ratingText += '<td><input type="button" class="table-button" id="row' + task.taskId + 'col' + colTasks[i].taskId + '" value="Choose" /></td>';
+      ratingText += '<td><input type="button" class="table-button rating-table-text" id="row' + task.taskId + 'col' + colTasks[i].taskId + '" value="Choose" /></td>';
     }
 
-    ratingText += '<td id="taskrow' + task.taskId + '">' + task.name + '</td></tr>';
+    ratingText += '<td class="rating-table-text" id="taskrow' + task.taskId + '">' + task.name + '</td></tr>';
   });
   ratingText += '</table>';
   ratingParagraph.innerHTML = ratingText;

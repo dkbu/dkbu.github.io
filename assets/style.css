@@ -52,7 +52,7 @@ body {
 
 
 div {
-  font-size: 20px;
+  font-size: 16px;
   line-height: 1.5;
   padding: 12px 16px;
   border: 2px transparent;
@@ -72,16 +72,43 @@ div {
   background-color: rgb(213, 213, 249);
 }
 
+.rating-table-text {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 80px;
+  font-size: 12px;
+}
+
+.rating-table-text:hover {
+  overflow: visible;
+}
+
+.picked_table_button {
+  background-color: lightblue;
+}
+
 input {
   font-size: 14px;
   padding: 4px 8px;
-  border: 1px solid rgb(213, 213, 249);
+  border: 1px solid rgb(27, 27, 35);
   border-radius: 4px;
   transition: all 0.3s ease;
   background-color: rgb(213, 213, 249);
 }
 
-h1 { text-align: center;}
+input:hover {
+  background-color: rgb(171, 140, 222);
+}
+
+input:active {
+  background-color: rgb(150, 150, 150);
+}
+
+h1 { 
+  text-align: center;
+  font-size: 20px;
+}
 
 .instructions {
   font-size: 16px;
