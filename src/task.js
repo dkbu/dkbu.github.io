@@ -35,7 +35,7 @@ export class Task {
     let menu = '<ul class="dropdown-content">';
     menu += '<li id="edit-' + this.taskId + '">Edit</li>'
     menu += '<li id="delete-' + this.taskId + '">Delete</li>'
-    menu += '<li id="complete-' + this.taskId + '">Mark as Complete</li>'
+    //menu += '<li id="complete-' + this.taskId + '">Mark as Complete</li>'
     menu += '</ul>';
     return menu;
   }

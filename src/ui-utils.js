@@ -54,7 +54,30 @@ export function editTask(tasks, updateTaskListFn, gridRatingFn) {
   };
 }
 
-export function updateTaskList(tasks, paragraph, editTaskHandler) {
+export function deleteTask(tasks, updateTaskListFn, gridRatingFn) {
+  return function(event) {
+    const labelId = event.target.id;
+    console.log('deleteTask event for element id: ' + labelId);
+
+    let taskId = null;
+    if (labelId.startsWith('delete-')) {
+      taskId = parseInt(labelId.replace('delete-', ''));
+    }
+    else if (labelId.startsWith('lbl')) {
+      taskId = parseInt(labelId.replace('lbl', ''));
+    }
+    if (taskId !== null) {
+      const taskIndex = tasks.findIndex(t => t.taskId === taskId);
+      if (taskIndex !== -1) {
+        tasks.splice(taskIndex, 1);
+        updateTaskListFn();
+        gridRatingFn();
+      }
+    }
+  };
+}
+
+export function updateTaskList(tasks, paragraph, editTaskHandler, deleteTaskHandler) {
   paragraph.innerHTML = '';
   var labels = [];
   var innie = '<ol type="1">';
@@ -69,9 +92,7 @@ export function updateTaskList(tasks, paragraph, editTaskHandler) {
 
   tasks.forEach(task => {
     console.log('Setting up events for task:', task.taskId);
-    task.linkTaskMenuEvents(editTaskHandler, function(event) {
-      console.log('Delete clicked for task:', task.taskId);
-    }, function(event) {
+    task.linkTaskMenuEvents(editTaskHandler, deleteTaskHandler, function(event) {
       console.log('Complete clicked for task:', task.taskId);
     });
   });

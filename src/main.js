@@ -3,7 +3,7 @@
  */
 
 import { Task } from './task.js'; 
-import { markComplete, editTask, updateTaskList } from './ui-utils.js';
+import { markComplete, editTask, updateTaskList, deleteTask } from './ui-utils.js';
 import { gridRating } from './rating.js';
 import { saveData, handleFileSelect } from './save-load.js';
 
@@ -21,9 +21,11 @@ const fileInput = document.getElementById('fileInput');
 
 
 // Create bound functions with dependencies
-const updateTaskListBound = () => updateTaskList(tasks, paragraph, editTaskBound, updateTaskListBound, gridRatingBound);
+  
+const updateTaskListBound = () => updateTaskList(tasks, paragraph, editTaskBound, deleteTaskBound);
 const gridRatingBound = (reset = true) => gridRating(tasks, updateTaskListBound, reset);
 const editTaskBound = editTask(tasks, updateTaskListBound, gridRatingBound);
+const deleteTaskBound = deleteTask(tasks, updateTaskListBound, gridRatingBound);
 const markCompleteBound = markComplete(tasks, updateTaskListBound);
 const saveDataBound = () => saveData(tasks);
 const handleFileSelectBound = (event) => handleFileSelect(event, tasks, updateTaskListBound, gridRatingBound);
