@@ -21,7 +21,7 @@ const fileInput = document.getElementById('fileInput');
 
 
 // Create bound functions with dependencies
-const updateTaskListBound = () => updateTaskList(tasks, paragraph, editTaskBound);
+const updateTaskListBound = () => updateTaskList(tasks, paragraph, editTaskBound, updateTaskListBound, gridRatingBound);
 const gridRatingBound = (reset = true) => gridRating(tasks, updateTaskListBound, reset);
 const editTaskBound = editTask(tasks, updateTaskListBound, gridRatingBound);
 const markCompleteBound = markComplete(tasks, updateTaskListBound);

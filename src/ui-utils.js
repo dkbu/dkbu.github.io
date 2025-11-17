@@ -15,23 +15,41 @@ export function markComplete(tasks, updateTaskListFn) {
 }
 
 export function editTask(tasks, updateTaskListFn, gridRatingFn) {
+  console.log('Creating editTask handler');
   return function(event) {
-    const labelId = event.target.id;
-    const taskId = parseInt(labelId.replace('lbl', ''));
+    if (!event || !event.target) {
+      console.log('Invalid event in editTask handler');
+      return;
+    }
+    
+    let taskId;
+    const targetId = event.target.id;
+    console.log('editTask event for element id: ' + targetId);
+    
+    // Handle both label clicks (lbl) and menu item clicks (edit-)
+    if (targetId.startsWith('lbl')) {
+      taskId = parseInt(targetId.replace('lbl', ''));
+    } else if (targetId.startsWith('edit-')) {
+      taskId = parseInt(targetId.replace('edit-', ''));
+    } else {
+      console.log('Unknown element clicked:', targetId);
+      return;
+    }
+    
     const task = tasks.find(t => t.taskId === taskId);
     if (task) {
-      const newName = prompt('Edit task name:', task.name);
-      if (newName !== null && newName.trim() !== '') {
-        task.name = newName.trim();
-
+      console.log('Found task to edit:', task.name);
+      if (task.editHandler()) {
+        console.log('Task edited successfully');
         const ratingParagraph = document.getElementById('taskRating');
-        if (ratingParagraph) {
+        if (ratingParagraph && ratingParagraph.innerHTML.trim() !== '') {
           gridRatingFn(false);
-        }
-        else {
+        } else {
           updateTaskListFn();
         }
       }
+    } else {
+      console.log('Task not found for ID:', taskId);
     }
   };
 }
@@ -44,14 +62,17 @@ export function updateTaskList(tasks, paragraph, editTaskHandler) {
   tasks.sort((a, b) => b.rating - a.rating);
   tasks.forEach(task => {
     console.log(task);
-    innie += '<li>' + task.generateLabel() + '</li>';
-    labels.push('lbl' + task.taskId);
+    innie += '<li class="drop-container">' + task.generateLabel() + '</li>';
   });
   innie += '</ol>';
   paragraph.innerHTML = innie;
 
-  labels.forEach(labelId => {
-    const lbl = document.getElementById(labelId);
-    lbl.addEventListener('click', editTaskHandler);
+  tasks.forEach(task => {
+    console.log('Setting up events for task:', task.taskId);
+    task.linkTaskMenuEvents(editTaskHandler, function(event) {
+      console.log('Delete clicked for task:', task.taskId);
+    }, function(event) {
+      console.log('Complete clicked for task:', task.taskId);
+    });
   });
 }
