@@ -116,6 +116,9 @@ export function gridRating(tasks, updateTaskListFn, reset = true) {
   var colTasks = {};
 
   tasks.forEach(task => {
+    if (task.isComplete) {
+      return;
+    }
     if (reset) {
       task.rating = 0;
     }

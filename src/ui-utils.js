@@ -2,14 +2,15 @@
  * UI utility functions for task management
  */
 
-export function markComplete(tasks, updateTaskListFn) {
+export function markComplete(tasks, updateTaskListFn, gridRatingFn) {
   return function(event) {
     const labelId = event.target.id;
-    const taskId = parseInt(labelId.replace('lbl', ''));
+    const taskId = parseInt(labelId.replace('complete-', ''));
     const task = tasks.find(t => t.taskId === taskId);
     if (task) {
       task.toggleComplete();
       updateTaskListFn();
+      gridRatingFn();
     }
   };
 }
@@ -77,7 +78,7 @@ export function deleteTask(tasks, updateTaskListFn, gridRatingFn) {
   };
 }
 
-export function updateTaskList(tasks, paragraph, editTaskHandler, deleteTaskHandler) {
+export function updateTaskList(tasks, paragraph, editTaskHandler, deleteTaskHandler, markCompleteHandler) {
   paragraph.innerHTML = '';
   var labels = [];
   var innie = '<ol type="1">';
@@ -92,8 +93,6 @@ export function updateTaskList(tasks, paragraph, editTaskHandler, deleteTaskHand
 
   tasks.forEach(task => {
     console.log('Setting up events for task:', task.taskId);
-    task.linkTaskMenuEvents(editTaskHandler, deleteTaskHandler, function(event) {
-      console.log('Complete clicked for task:', task.taskId);
-    });
+    task.linkTaskMenuEvents(editTaskHandler, deleteTaskHandler, markCompleteHandler);
   });
 }

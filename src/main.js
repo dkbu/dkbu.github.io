@@ -22,11 +22,11 @@ const fileInput = document.getElementById('fileInput');
 
 // Create bound functions with dependencies
   
-const updateTaskListBound = () => updateTaskList(tasks, paragraph, editTaskBound, deleteTaskBound);
+const updateTaskListBound = () => updateTaskList(tasks, paragraph, editTaskBound, deleteTaskBound, markCompleteBound);
 const gridRatingBound = (reset = true) => gridRating(tasks, updateTaskListBound, reset);
 const editTaskBound = editTask(tasks, updateTaskListBound, gridRatingBound);
 const deleteTaskBound = deleteTask(tasks, updateTaskListBound, gridRatingBound);
-const markCompleteBound = markComplete(tasks, updateTaskListBound);
+const markCompleteBound = markComplete(tasks, updateTaskListBound, gridRatingBound);
 const saveDataBound = () => saveData(tasks);
 const handleFileSelectBound = (event) => handleFileSelect(event, tasks, updateTaskListBound, gridRatingBound);
 

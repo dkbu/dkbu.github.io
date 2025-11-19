@@ -16,26 +16,27 @@ export class Task {
     this.toggleComplete = this.toggleComplete.bind(this);
   }
 
-  completeTask() {
-    this.isComplete = true;
-  } 
-
   generateLabel() {
     const labelId = 'lbl' + this.taskId;
-    /*const checkedStyle = 'text-decoration: line-through;';
+    let lblHtml = '<label class="dropdown" id="' + labelId + '"';
+    const checkedStyle = 'text-decoration: line-through; color: gray;';
     if (this.isComplete) {
-      return '<label color="green" for="chk' + this.taskId + '" id="' + labelId + '" style="' + checkedStyle + '">' + this.name + ': ' + this.rating + '</label>';
-    }*/
-    return '<label class="dropdown" id="' + labelId + '">' 
-    + this.name + ': ' + this.rating + this.generateTaskMenu() +
-    '</label>';
+      lblHtml += ' style="' + checkedStyle + '"'; 
+    }
+    lblHtml += '>' + this.name;
+    if (!this.isComplete) {
+      lblHtml += ': ' + this.rating;
+    }
+    lblHtml += this.generateTaskMenu() + '</label>';
+    return lblHtml;
   }
 
   generateTaskMenu() {
     let menu = '<ul class="dropdown-content">';
     menu += '<li id="edit-' + this.taskId + '">Edit</li>'
     menu += '<li id="delete-' + this.taskId + '">Delete</li>'
-    //menu += '<li id="complete-' + this.taskId + '">Mark as Complete</li>'
+    menu += '<li id="complete-' + this.taskId + '">Mark as ' + 
+    (this.isComplete ? 'In Progress' : 'Complete') + '</li>';
     menu += '</ul>';
     return menu;
   }
@@ -73,6 +74,7 @@ export class Task {
 
   toggleComplete() {
     this.isComplete = !this.isComplete;
+    this.rating = this.isComplete ? -1 : 0;
   }
   
 }

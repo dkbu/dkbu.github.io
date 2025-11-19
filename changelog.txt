@@ -7,3 +7,4 @@
 11.11.2025 - CSS tinkering
 17.11.2025 - Add delete task
              Pop out menu for edit, complete and delete task. Complete currently not implemented
+19.11.2025 - Implemented "mark as complete"
