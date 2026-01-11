@@ -3,6 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>DKBU Projects</title>
     
     <!-- CORS and Security Configuration -->
     <meta http-equiv="Access-Control-Allow-Origin" content="*" />
@@ -19,38 +20,73 @@
     <meta http-equiv="X-XSS-Protection" content="1; mode=block" />
     
     <link rel="stylesheet" href="assets/style.css" />
+    <style>
+      .entrance-container {
+        max-width: 800px;
+        margin: 2rem auto;
+        padding: 2rem;
+        text-align: center;
+      }
+      
+      .project-card {
+        background: #f5f5f5;
+        border: 1px solid #ddd;
+        border-radius: 8px;
+        padding: 1.5rem;
+        margin: 1rem 0;
+        text-decoration: none;
+        color: inherit;
+        display: block;
+        transition: all 0.3s ease;
+      }
+      
+      .project-card:hover {
+        background: #e8f4f8;
+        border-color: #007acc;
+        transform: translateY(-2px);
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      }
+      
+      .project-title {
+        font-size: 1.5rem;
+        font-weight: bold;
+        margin-bottom: 0.5rem;
+        color: #333;
+      }
+      
+      .project-description {
+        color: #666;
+        margin-bottom: 1rem;
+      }
+      
+      .project-tech {
+        font-size: 0.9rem;
+        color: #888;
+        font-style: italic;
+      }
+    </style>
   </head>
   <body>
-    <h1>Task Rating App</h1>
-    <div class="container">
-      <div class="instructions">
-        <details>
-          <summary>How to use</summary>
-          Enter your tasks in the input field and click "Add task" to add them
-          to the list. Once you have added all your tasks, click "Rate grid" to
-          create the rating matrix.<br />
-          Click on the cells in the rating matrix to pick between two tasks. The
-          selected task's rating will rise. The task list is sorted by rating.<br />
-          Once you have rated all tasks against each other, start from the first 
-          task in the list and work your way down.
-        </details>
-      </div>
-      <div class="task-input control">
-        <input type="text" name="taskInput" />
-        <input type="button" name="addTask" value="Add task" />
-      </div>
-      <div class="task-list tasks" id="taskList"></div>
-      <div class="task-rate control">
-        <input type="button" name="rateGrid" value="Rate grid" />
-      </div>
-      <div class="task-rating tasks" id="taskRating"></div>
-      <div class="save-load control">
-        <input type="button" id="saveData" name="saveData" value="Save data" />
-        <input type="button" id="loadData" name="loadData" value="Load data" />
-        <input type="file" id="fileInput" name="fileInput" style="display:none;" />
-        <a id="savedData" class="instructions"> </a>
-      </div>
+    <div class="entrance-container">
+      <h1>Welcome to DKBU Projects</h1>
+      <p>Explore the available tools and applications:</p>
+      
+      <a href="app.html" class="project-card">
+        <div class="project-title">Task Rating App</div>
+        <div class="project-description">
+          A productivity tool for prioritizing tasks using pairwise comparison. 
+          Add your tasks and rate them against each other to create a prioritized list.
+        </div>
+        <div class="project-tech">JavaScript • HTML • CSS</div>
+      </a>
+      
+      <a href="lib/InterlockingPatches/index.html" class="project-card">
+        <div class="project-title">Interlocking Patches Designer</div>
+        <div class="project-description">
+          Make some interlocking crochet patches 
+        </div>
+        <div class="project-tech">JavaScript • HTML • CSS</div>
+      </a>
     </div>
-    <script type="module" src="src/main.js"></script>
   </body>
 </html>

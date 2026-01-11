@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    
+    <!-- CORS and Security Configuration -->
+    <meta http-equiv="Access-Control-Allow-Origin" content="*" />
+    <meta http-equiv="Access-Control-Allow-Methods" content="GET, POST, PUT, DELETE, OPTIONS" />
+    <meta http-equiv="Access-Control-Allow-Headers" content="Content-Type, Authorization, X-Requested-With" />
+    <meta http-equiv="Access-Control-Max-Age" content="86400" />
+    
+    <!-- Content Security Policy -->
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data: https:; connect-src 'self' https:;" />
+    
+    <!-- Additional Security Headers -->
+    <meta http-equiv="X-Content-Type-Options" content="nosniff" />
+    <meta http-equiv="X-Frame-Options" content="DENY" />
+    <meta http-equiv="X-XSS-Protection" content="1; mode=block" />
+    
+    <link rel="stylesheet" href="assets/style.css" />
+  </head>
+  <body>
+    <h1>Task Rating App</h1>
+    <div class="container">
+      <div class="instructions">
+        <details>
+          <summary>How to use</summary>
+          Enter your tasks in the input field and click "Add task" to add them
+          to the list. Once you have added all your tasks, click "Rate grid" to
+          create the rating matrix.<br />
+          Click on the cells in the rating matrix to pick between two tasks. The
+          selected task's rating will rise. The task list is sorted by rating.<br />
+          Once you have rated all tasks against each other, start from the first 
+          task in the list and work your way down.
+        </details>
+      </div>
+      <div class="task-input control">
+        <input type="text" name="taskInput" />
+        <input type="button" name="addTask" value="Add task" />
+      </div>
+      <div class="task-list tasks" id="taskList"></div>
+      <div class="task-rate control">
+        <input type="button" name="rateGrid" value="Rate grid" />
+      </div>
+      <div class="task-rating tasks" id="taskRating"></div>
+      <div class="save-load control">
+        <input type="button" id="saveData" name="saveData" value="Save data" />
+        <input type="button" id="loadData" name="loadData" value="Load data" />
+        <input type="file" id="fileInput" name="fileInput" style="display:none;" />
+        <a id="savedData" class="instructions"> </a>
+      </div>
+    </div>
+    <script type="module" src="src/main.js"></script>
+  </body>
+</html>
