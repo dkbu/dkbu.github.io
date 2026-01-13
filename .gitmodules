@@ -1,3 +1,0 @@
-[submodule "lib/InterlockingPatches"]
-	path = lib/InterlockingPatches
-	url = https://github.com/dkbu/InterlockingPatches.git
