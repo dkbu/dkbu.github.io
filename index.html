@@ -3,7 +3,6 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>DKBU Projects</title>
     
     <!-- CORS and Security Configuration -->
     <meta http-equiv="Access-Control-Allow-Origin" content="*" />
@@ -20,55 +19,10 @@
     <meta http-equiv="X-XSS-Protection" content="1; mode=block" />
     
     <link rel="stylesheet" href="assets/style.css" />
-    <style>
-      .entrance-container {
-        max-width: 800px;
-        margin: 2rem auto;
-        padding: 2rem;
-        text-align: center;
-      }
-      
-      .project-card {
-        background: #f5f5f5;
-        border: 1px solid #ddd;
-        border-radius: 8px;
-        padding: 1.5rem;
-        margin: 1rem 0;
-        text-decoration: none;
-        color: inherit;
-        display: block;
-        transition: all 0.3s ease;
-      }
-      
-      .project-card:hover {
-        background: #e8f4f8;
-        border-color: #007acc;
-        transform: translateY(-2px);
-        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-      }
-      
-      .project-title {
-        font-size: 1.5rem;
-        font-weight: bold;
-        margin-bottom: 0.5rem;
-        color: #333;
-      }
-      
-      .project-description {
-        color: #666;
-        margin-bottom: 1rem;
-      }
-      
-      .project-tech {
-        font-size: 0.9rem;
-        color: #888;
-        font-style: italic;
-      }
-    </style>
   </head>
   <body>
     <div class="entrance-container">
-      <h1>It's... DKBU Projects</h1>
+      <h1>DKBU Projects</h1>
       <p>Explore the available tools and applications:</p>
       
       <a href="app.html" class="project-card">
@@ -80,7 +34,7 @@
         <div class="project-tech">JavaScript • HTML • CSS</div>
       </a>
       
-      <a href="lib/InterlockingPatches/index.html" class="project-card">
+      <a href="https://cedarjd.github.io/index.html" class="project-card">
         <div class="project-title">Interlocking Patches Designer</div>
         <div class="project-description">
           Make some interlocking crochet patches 
@@ -88,5 +42,6 @@
         <div class="project-tech">JavaScript • HTML • CSS</div>
       </a>
     </div>
+    <script type="module" src="src/main.js"></script>
   </body>
 </html>
