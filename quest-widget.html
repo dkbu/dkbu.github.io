@@ -1,0 +1,87 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Quest Task Manager</title>
+    <link rel="stylesheet" href="quest-task-manager.css" />
+  </head>
+  <body>
+    
+    <div id="quest-manager-widget"></div>
+    <script
+      src="node_modules/quest-task-manager/dist/quest-task-manager-standalone.js"
+      onerror="
+        console.error('Failed to load QuestTaskManager script from:', this.src)
+      "
+      onload="
+        console.log('QuestTaskManager script loaded successfully from:', this.src);
+        console.log('Immediately after load - typeof QuestTaskManager:', typeof window['QuestTaskManager']);
+           // Try to initialize immediately when script loads
+        setTimeout(() => {
+          if (typeof window['QuestTaskManager'] !== 'undefined') {
+            console.log('✅ QuestTaskManager found after timeout');
+            initializeWidget();
+          } else {
+            console.error('❌ QuestTaskManager still undefined after timeout');
+          }
+        }, 100);
+      "
+    ></script>
+    <script>
+      function initializeWidget() {
+        console.log('🚀 Initializing QuestTaskManager...');
+        let QuestTaskManager = window['QuestTaskManager'];
+        
+        const questManager = new QuestTaskManager({
+          enableSave: true,
+          enableLoad: true,
+          autoSave: true,
+          showQuestColors: true,
+          showDeadlines: true,
+          showOverdueWarnings: true,
+          // Callbacks for integration
+          onQuestAdded: (quest) => {
+            console.log("Quest added:", quest);
+          },
+          onTaskAdded: (task) => {
+            console.log("Task added:", task);
+          },
+          onTaskCompleted: (task) => {
+            console.log("Task completed:", task);
+          },
+          onDataSaved: (data) => {
+            console.log("Data saved:", data);
+          },
+          onDataLoaded: (data) => {
+            console.log("Data loaded:", data);
+          },
+        });
+
+        // Initialize in the widget container
+        console.log("📋 Calling questManager.init...");
+        questManager.init("#quest-manager-widget");
+
+        // Make it globally available for demo purposes
+        window.questManager = questManager;
+        
+        console.log("✅ QuestTaskManager initialized!");
+      }
+      
+      // Also try DOM ready as fallback
+      document.addEventListener('DOMContentLoaded', function() {
+        console.log('DOM ready, checking QuestTaskManager...');
+        console.log('typeof QuestTaskManager:', typeof window.QuestTaskManager);
+        
+        if (typeof window.QuestTaskManager !== 'undefined') {
+          console.log('✅ QuestTaskManager available on DOM ready');
+          initializeWidget();
+        } else {
+          console.error('❌ QuestTaskManager not found on DOM ready');
+          document.getElementById('quest-manager-widget').innerHTML = 
+            '<p style="color: red; padding: 20px;">QuestTaskManager not loaded! Check console for details.</p>';
+        }
+      });
+    </script>
+  </body>
+</html>

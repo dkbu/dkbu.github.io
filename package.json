@@ -1,0 +1,8 @@
+{
+  "name": "dkbu.github.io",
+  "packageManager": "yarn@4.11.0",
+  "dependencies": {
+    "InterlockingPatchMaker": "https://github.com/dkbu/InterlockingPatches.git",
+    "quest-task-manager": "https://github.com/dkbu/Quest/releases/download/v1.0.0/quest-task-manager-1.0.0.tgz"
+  }
+}
