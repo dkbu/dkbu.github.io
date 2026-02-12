@@ -49,8 +49,16 @@ jobs:
           
           # Copy the WYF files to lib directory
           cp node_modules/water-your-friends/water-your-friends-widget.js lib/water-your-friends/
-          cp -r node_modules/water-your-friends/assets/ lib/water-your-friends/assets
           
+          # Copy the assets directory if it exists
+          if [ -d "node_modules/water-your-friends/assets" ]; then
+            cp -r node_modules/water-your-friends/assets lib/water-your-friends/
+            echo "Assets copied:"
+            ls -la lib/water-your-friends/assets/
+          else
+            echo "Warning: assets directory not found in package"
+          fi
+
           # Verify files were copied
           ls -la lib/water-your-friends/
           
