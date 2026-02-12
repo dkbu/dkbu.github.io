@@ -1,0 +1,3 @@
+# Keep the lib directory in the build output
+keep_files:
+  - lib
