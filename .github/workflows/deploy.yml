@@ -48,8 +48,7 @@ jobs:
           mkdir -p lib/water-your-friends
           
           # Copy the WYF files to lib directory
-          cp node_modules/water-your-friends/dist/water-your-friends-standalone.js lib/water-your-friends/
-          cp node_modules/water-your-friends/styles/water-your-friends.css lib/water-your-friends/
+          cp node_modules/water-your-friends/water-your-friends-widget.js lib/water-your-friends/
           
           # Verify files were copied
           ls -la lib/water-your-friends/
