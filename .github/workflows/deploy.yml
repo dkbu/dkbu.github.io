@@ -55,6 +55,7 @@ jobs:
             cp -a node_modules/water-your-friends/assets/. lib/water-your-friends/assets/
             echo "Assets copied:"
             ls -la lib/water-your-friends/assets/
+            ls -la lib/water-your-friends/assets/grown.png
           else
             echo "Warning: assets directory not found in package"
           fi
