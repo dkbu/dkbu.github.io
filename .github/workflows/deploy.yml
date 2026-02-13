@@ -52,7 +52,7 @@ jobs:
           
           # Copy the assets directory if it exists
           if [ -d "node_modules/water-your-friends/assets" ]; then
-            cp -r node_modules/water-your-friends/assets lib/water-your-friends/
+            cp -a node_modules/water-your-friends/assets/. lib/water-your-friends/assets/
             echo "Assets copied:"
             ls -la lib/water-your-friends/assets/
           else
