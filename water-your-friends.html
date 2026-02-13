@@ -17,7 +17,7 @@
     ></script>
     <script>
         // Initialize the Water Your Friends widget
-        const waterYourFriends = new WaterYourFriends({
+        const waterYourFriends = new WaterYourFriends('water-your-friends-widget', {
             imagePath: 'lib/water-your-friends/assets/',
             enableSave: true,
             enableLoad: true,
@@ -42,9 +42,6 @@
                 console.log('Data loaded:', data);
             }
         });
-
-        // Initialize in the widget container
-        waterYourFriends.init('#water-your-friends-widget');
         
         // Make it globally available for demo purposes
         window.waterYourFriends = waterYourFriends;
