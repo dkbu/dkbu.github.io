@@ -10,3 +10,6 @@ node_modules/
 # Package archives
 *.tgz
 *.tar.gz
+
+# local debug
+lib/water-your-friends/*

@@ -17,8 +17,10 @@
     ></script>
     <script>
         // Initialize the Water Your Friends widget
-        const waterYourFriends = new WaterYourFriends('water-your-friends-widget', {
+        const options = {
             imagePath: 'lib/water-your-friends/assets/',
+            title: 'Water Your Friends',
+            subtitle: "Get watered nerd",
             enableSave: true,
             enableLoad: true,
             autoSave: true,
@@ -41,7 +43,10 @@
             onDataLoaded: (data) => {
                 console.log('Data loaded:', data);
             }
-        });
+        };
+        const waterYourFriends = new WaterYourFriends('water-your-friends-widget', options);
+        
+        waterYourFriends.init();
         
         // Make it globally available for demo purposes
         window.waterYourFriends = waterYourFriends;
