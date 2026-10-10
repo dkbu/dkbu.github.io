@@ -4,6 +4,6 @@
   "dependencies": {
     "InterlockingPatchMaker": "https://github.com/dkbu/InterlockingPatches.git",
     "quest-task-manager": "https://github.com/dkbu/Quest/releases/download/v1.0.0/quest-task-manager-1.0.0.tgz",
-    "water-your-friends": "https://github.com/dkbu/wyf_js/releases/download/v1.0.0/water-your-friends-1.0.0.tgz"
+    "water-your-friends": "https://github.com/dkbu/wyf_js/releases/download/v1.0.1/water-your-friends-1.0.1.tgz"
   }
 }
